@@ -7,7 +7,7 @@ app = Flask(__name__)
 
 @app.route("/")
 def showPinehead():
-    html = "<div style='text-align:center;margin:20px;'><h1>Welcome to the CBO POC Environment V1  !</h1><img src='https://storage.cloud.google.com/fs2-dev-public-bucket-faisal/deloitte.jpg' width='40%' alt='Pinehead @ Linux Academy'></div>"
+    html = "<div style='text-align:center;margin:20px;'><h1>Welcome to the CBO POC Environment V1!!!!!</h1><img src='https://storage.cloud.google.com/fs2-dev-public-bucket-faisal/deloitte.jpg' width='40%' alt='Pinehead @ Linux Academy'></div>"
     return html
 
 if __name__ == "__main__":
