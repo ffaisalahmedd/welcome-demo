@@ -1,40 +1,8 @@
 steps:
-#step 1
+- name: 'gcr.io/cloud-builders/git'
+  args: ['clone', 'https://github.com/ffaisalahmedd/welcome-demo']
+  env: ['PROJECT_ROOT=welcome-demo']
 - name: 'gcr.io/cloud-builders/docker'
-  entrypoint: 'bash'
-  args: [
-   '-c',
-   'docker pull gcr.io/find-seller-app-dev-237005/github.com/ffaisalahmedd/welcome-demo@sha256:dcf99652e4fa14d4a6f105b95b3be96c1d2873dbbfdd1034714b14bdce069ee3 || exit 0'
-  ]
-#step 2
-- name: gcr.io/cloud-builders/docker
-  args: [
-   'build',
-   '-t',
-   'gcr.io/find-seller-app-dev-237005/github.com/ffaisalahmedd/welcome-demo:$BRANCH_NAME-$COMMIT_SHA',
-   '.'
-  ]
-#step 3
-- name: 'gcr.io/cloud-builders/kubectl'
-  args: ['apply', '-f', 'k8s/']
-  env:
-  - 'CLOUDSDK_COMPUTE_ZONE=us-east1-b'
-  - 'CLOUDSDK_CONTAINER_CLUSTER=hello-app'
-#step 4
-- name: 'gcr.io/cloud-builders/kubectl'
-  args: [
-   'set',
-   'image',
-   'deployment',
-   'hello-app',
-   'hello-app=gcr.io/find-seller-app-dev-237005/github.com/ffaisalahmedd/welcome-demo:$BRANCH_NAME-$COMMIT_SHA'
-  ]
-  env:
-  - 'CLOUDSDK_COMPUTE_ZONE=us-east1-b'
-  - 'CLOUDSDK_CONTAINER_CLUSTER=hello-app'
-# push images to Google Container Registry with tags
-images: [
-   'gcr.io/find-seller-app-dev-237005/github.com/ffaisalahmedd/welcome-demo:$BRANCH_NAME-$COMMIT_SHA',
-  ]
-  
-  
+  args: [ 'build', '-t', 'gcr.io/find-seller-app-dev-237005/quickstart-image', '.' ]
+images:
+- 'gcr.io/find-seller-app-dev-237005/quickstart-image'
