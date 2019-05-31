@@ -3,6 +3,6 @@ steps:
   args: ['clone', 'https://github.com/ffaisalahmedd/welcome-demo']
   env: ['PROJECT_ROOT=welcome-demo']
 - name: 'gcr.io/cloud-builders/docker'
-  args: [ 'build', '-t', 'gcr.io/find-seller-app-dev-237005/quickstart-image', '.' ]
+  args: [ 'build', '-t', 'gcr.io/find-seller-app-dev-237005/github.com/ffaisalahmedd/welcome-demo', '.' ]
 images:
 - 'gcr.io/find-seller-app-dev-237005/quickstart-image'
