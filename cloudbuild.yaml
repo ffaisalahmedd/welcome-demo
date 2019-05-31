@@ -4,14 +4,14 @@ steps:
   entrypoint: 'bash'
   args: [
    '-c',
-   'docker pull gcr.io/find-seller-app-dev-237005/faisal-container-image:v3 || exit 0'
+   'docker pull gcr.io/find-seller-app-dev-237005/github.com/ffaisalahmedd/welcome-demo@sha256:dcf99652e4fa14d4a6f105b95b3be96c1d2873dbbfdd1034714b14bdce069ee3 || exit 0'
   ]
 #step 2
 - name: gcr.io/cloud-builders/docker
   args: [
    'build',
    '-t',
-   'gcr.io/find-seller-app-dev-237005/faisal-container-image:$BRANCH_NAME-$COMMIT_SHA',
+   'gcr.io/find-seller-app-dev-237005/github.com/ffaisalahmedd/welcome-demo:$BRANCH_NAME-$COMMIT_SHA',
    '.'
   ]
 #step 3
@@ -27,14 +27,14 @@ steps:
    'image',
    'deployment',
    'hello-app',
-   'hello-app=gcr.io/find-seller-app-dev-237005/faisal-container-image:$BRANCH_NAME-$COMMIT_SHA'
+   'hello-app=gcr.io/find-seller-app-dev-237005/github.com/ffaisalahmedd/welcome-demo:$BRANCH_NAME-$COMMIT_SHA'
   ]
   env:
   - 'CLOUDSDK_COMPUTE_ZONE=us-east1-b'
   - 'CLOUDSDK_CONTAINER_CLUSTER=hello-app'
 # push images to Google Container Registry with tags
 images: [
-   'gcr.io/find-seller-app-dev-237005/faisal-container-image:$BRANCH_NAME-$COMMIT_SHA',
+   'gcr.io/find-seller-app-dev-237005/github.com/ffaisalahmedd/welcome-demo:$BRANCH_NAME-$COMMIT_SHA',
   ]
   
   
