@@ -18,7 +18,7 @@ spec:
     spec:
       containers:
       - name: "lac-app-image-sha256"
-        image: "gcr.io/find-seller-app-dev-237005/faisal-container-image:v3"
+        image: "gcr.io/find-seller-app-dev-237005/faisal-container-image:$BRANCH_NAME-$COMMIT_SHA"
 ---
 apiVersion: "autoscaling/v2beta1"
 kind: "HorizontalPodAutoscaler"
