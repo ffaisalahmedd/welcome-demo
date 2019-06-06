@@ -1,8 +1,39 @@
 steps:
-- name: 'gcr.io/cloud-builders/git'
-  args: ['clone', 'https://github.com/ffaisalahmedd/welcome-demo']
-  env: ['PROJECT_ROOT=welcome-demo']
+#step 1
 - name: 'gcr.io/cloud-builders/docker'
-  args: [ 'build', '-t', 'gcr.io/find-seller-app-dev-237005/github.com/ffaisalahmedd/welcome-demo:7ec50226d1029ab9531d9a5f8c4960a8d912f85a', '.' ]
-images:
-- 'gcr.io/find-seller-app-dev-237005/github.com/ffaisalahmedd/welcome-demo:7ec50226d1029ab9531d9a5f8c4960a8d912f85a'
+  entrypoint: 'bash'
+  args: [
+   '-c',
+   'docker pull gcr.io/project-kubernetes-242705/welcome:latest || exit 0'
+  ]
+#step 2
+- name: 'gcr.io/cloud-builders/docker'
+  args: [
+   'build',
+   '-t',
+   'gcr.io/project-kubernetes-242705/welcome:$BRANCH_NAME-$COMMIT_SHA',
+   '.'
+  ]
+#step 3
+- name: 'gcr.io/cloud-builders/kubectl'
+  gcloud container clusters get-credentials --zone "$CLOUDSDK_COMPUTE_ZONE" "$CLOUDSDK_CONTAINER_CLUSTER"
+  args: ['apply', '-f', 'k8s/']
+  env:
+  - 'CLOUDSDK_COMPUTE_ZONE=us-east1-b'
+  - 'CLOUDSDK_CONTAINER_CLUSTER=poc-cluster'
+#step 4
+- name: 'gcr.io/cloud-builders/kubectl'
+  args: [
+   'set',
+   'image',
+   'deployment',
+   'welcome-demo',
+   'welcome-demo=gcr.io/project-kubernetes-242705/welcome:$BRANCH_NAME-$COMMIT_SHA'
+  ]
+  env:
+  - 'CLOUDSDK_COMPUTE_ZONE=us-east1-b'
+  - 'CLOUDSDK_CONTAINER_CLUSTER=poc-cluster'
+# push images to Google Container Registry with tags
+images: [
+   'gcr.io/project-kubernetes-242705/welcome:$BRANCH_NAME-$COMMIT_SHA',
+  ]
