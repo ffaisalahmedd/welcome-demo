@@ -2,35 +2,35 @@
 apiVersion: "extensions/v1beta1"
 kind: "Deployment"
 metadata:
-  name: "welcome-test"
+  name: "nginx-1"
   namespace: "default"
   labels:
-    app: "welcome-test"
+    app: "nginx-1"
 spec:
   replicas: 3
   selector:
     matchLabels:
-      app: "welcome-test"
+      app: "nginx-1"
   template:
     metadata:
       labels:
-        app: "welcome-test"
+        app: "nginx-1"
     spec:
       containers:
       - name: "lac-app-image-sha256"
-        image: "gcr.io/project-kubernetes-242705/welcome"
+        image: "gcr.io/project-kubernetes-242705/welcome:v1"
 ---
 apiVersion: "autoscaling/v2beta1"
 kind: "HorizontalPodAutoscaler"
 metadata:
-  name: "welcome-test-hpa"
+  name: "nginx-1-hpa"
   namespace: "default"
   labels:
-    app: "welcome-test"
+    app: "nginx-1"
 spec:
   scaleTargetRef:
     kind: "Deployment"
-    name: "welcome-test"
+    name: "nginx-1"
     apiVersion: "apps/v1beta1"
   minReplicas: 1
   maxReplicas: 5
