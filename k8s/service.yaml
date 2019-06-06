@@ -1,12 +1,16 @@
-kind: Service
-apiVersion: v1
+---
+apiVersion: "v1"
+kind: "Service"
 metadata:
-  name: nginx-1
+  name: "nginx-1-service"
+  namespace: "default"
+  labels:
+    app: "nginx-1"
 spec:
-  selector:
-     run: nginx-1
   ports:
-  - protocol: TCP
-    port: 8080
-    targetPort: 8080
-  type: LoadBalancer
+  - protocol: "TCP"
+    port: 80
+  selector:
+    app: "nginx-1"
+  type: "LoadBalancer"
+  loadBalancerIP: ""
