@@ -16,7 +16,6 @@ steps:
   ]
 #step 3
 - name: 'gcr.io/cloud-builders/kubectl'
-  gcloud container clusters get-credentials --zone "$CLOUDSDK_COMPUTE_ZONE" "$CLOUDSDK_CONTAINER_CLUSTER"
   args: ['apply', '-f', 'k8s/']
   env:
   - 'CLOUDSDK_COMPUTE_ZONE=us-east1-b'
