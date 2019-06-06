@@ -26,8 +26,8 @@ steps:
    'set',
    'image',
    'deployment',
-   'welcome-test',
-   'welcome-test=gcr.io/project-kubernetes-242705/welcome:$BRANCH_NAME-$COMMIT_SHA'
+   'nginx-1',
+   'nginx-1=gcr.io/project-kubernetes-242705/welcome:$BRANCH_NAME-$COMMIT_SHA'
   ]
   env:
   - 'CLOUDSDK_COMPUTE_ZONE=us-east1-b'
