@@ -2,19 +2,19 @@
 apiVersion: "extensions/v1beta1"
 kind: "Deployment"
 metadata:
-  name: "nginx-1"
+  name: "welcome-test"
   namespace: "default"
   labels:
-    app: "nginx-1"
+    app: "welcome-test"
 spec:
   replicas: 3
   selector:
     matchLabels:
-      app: "nginx-1"
+      app: "welcome-test"
   template:
     metadata:
       labels:
-        app: "nginx-1"
+        app: "welcome-test"
     spec:
       containers:
       - name: "lac-app-image-sha256"
@@ -23,14 +23,14 @@ spec:
 apiVersion: "autoscaling/v2beta1"
 kind: "HorizontalPodAutoscaler"
 metadata:
-  name: "nginx-1-hpa"
+  name: "welcome-test-hpa"
   namespace: "default"
   labels:
-    app: "nginx-1"
+    app: "welcome-test"
 spec:
   scaleTargetRef:
     kind: "Deployment"
-    name: "nginx-1"
+    name: "welcome-test"
     apiVersion: "apps/v1beta1"
   minReplicas: 1
   maxReplicas: 5
