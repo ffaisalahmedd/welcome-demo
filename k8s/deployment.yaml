@@ -18,7 +18,7 @@ spec:
     spec:
       containers:
       - name: "lac-app-image-sha256"
-        image: "gcr.io/find-seller-app-dev-237005/github.com/ffaisalahmedd/welcome-demo"
+        image: "gcr.io/project-kubernetes-242705/welcome"
 ---
 apiVersion: "autoscaling/v2beta1"
 kind: "HorizontalPodAutoscaler"
