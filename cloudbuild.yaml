@@ -26,7 +26,7 @@ steps:
    'set',
    'image',
    'deployment',
-   'nwelcome-app',
+   'welcome-app',
    'welcome-app=gcr.io/project-kubernetes-242705/welcome:$BRANCH_NAME-$COMMIT_SHA'
   ]
   env:
