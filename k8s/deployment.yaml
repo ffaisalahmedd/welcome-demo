@@ -18,7 +18,7 @@ spec:
     spec:
       containers:
       - name: "welcome-sha256"
-        image: "gcr.io/project-kubernetes-242705/welcome@sha256:9329920a23a15b8600b7ddf9d5e2b14f89b5ea251c94f55f184751ee41cd813c"
+        image: "gcr.io/project-kubernetes-242705/welcome"
 ---
 apiVersion: "autoscaling/v2beta1"
 kind: "HorizontalPodAutoscaler"
