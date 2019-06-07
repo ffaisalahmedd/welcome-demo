@@ -17,7 +17,7 @@ spec:
         app: "welcome-app"
     spec:
       containers:
-      - name: "welcome-sha256"
+      - name: "welcome-app"
         image: "gcr.io/project-kubernetes-242705/welcome"
 ---
 apiVersion: "autoscaling/v2beta1"
