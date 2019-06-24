@@ -19,7 +19,7 @@ steps:
   args: ['apply', '-f', 'k8s/']
   env:
   - 'CLOUDSDK_COMPUTE_ZONE=us-east1-b'
-  - 'CLOUDSDK_CONTAINER_CLUSTER=default-cluster'
+  - 'CLOUDSDK_CONTAINER_CLUSTER=poc-cluster'
 #step 4
 - name: 'gcr.io/cloud-builders/kubectl'
   args: [
@@ -31,7 +31,7 @@ steps:
   ]
   env:
   - 'CLOUDSDK_COMPUTE_ZONE=us-east1-b'
-  - 'CLOUDSDK_CONTAINER_CLUSTER=deafault-cluster'
+  - 'CLOUDSDK_CONTAINER_CLUSTER=poc-cluster'
 # push images to Google Container Registry with tags
 images: [
    'gcr.io/project-kubernetes-242705/welcome:$BRANCH_NAME-$COMMIT_SHA',
